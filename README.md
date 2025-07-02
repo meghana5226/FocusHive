@@ -11,6 +11,8 @@ A full-stack MERN-based Productivity Tracker to manage tasks, visualize progress
 - Backend (API): [https://smart-productivity-tracker.onrender.com](https://smart-productivity-tracker.onrender.com)
 
 ---
+**App Screenshot**
+Screenshot:client/public/demo.png
 
 ##  Features
 
