@@ -1,45 +1,95 @@
-# smart-productivity-tracker
-A responsive full-stack web app to track tasks, time, and mood with real-time charts and filters.
+
 #  Smart Productivity Tracker
 
-A full-stack MERN (MongoDB, Express, React, Node.js) web app to boost your productivity with smart task management, motivational quotes, weekly charts, calendar view, and more — all in one stylish dashboard.
-
-##  Live Demo
-
-🌐 [smart-productivity-tracker.onrender.com](https://smart-productivity-tracker.onrender.com)
+A full-stack MERN-based Productivity Tracker to manage tasks, visualize progress, and boost productivity with clean analytics.
 
 ---
 
-## 📸 Features
+##  Live Links
 
-✅ User Authentication (JWT-based)  
-✅ Task Management (Add, Edit, Delete)  
-✅ Daily Inspirational Quotes (with carousel + favorites)  
-✅ Calendar Integration (View tasks & dates)  
-✅ Weekly Productivity Chart 📊  
-✅ Focus Timer (Pomodoro-like timer) ⏱️  
-✅ Dark / Light Mode Toggle 🌙  
-✅ Responsive & Stylish UI using TailwindCSS  
-✅ RESTful API with Express + MongoDB
+-  Frontend (Client): [https://smart-frontend.onrender.com](https://smart-frontend.onrender.com)
+- Backend (API): [https://smart-productivity-tracker.onrender.com](https://smart-productivity-tracker.onrender.com)
 
 ---
 
-##  Project Structure
+##  Features
+
+- 🔐 JWT-Based Authentication (Signup/Login)
+- 📅 Add, Edit, Delete Tasks with Deadline
+- 📈 Dashboard with Analytics (Recharts)
+- ⏱️ Pomodoro Timer Integration
+- 🗓️ Calendar View for Task Tracking
+- 📦 MongoDB for persistent storage
+- ✨ Clean UI using TailwindCSS
+- ☁️ Fully deployed on Render (backend) & Render Static Site (client)
+
+---
+
+## ⚙ Tech Stack
+
+- Frontend: React.js, TailwindCSS, Axios
+- Backend: Node.js, Express.js, MongoDB, Mongoose
+- Auth: JWT, bcryptjs
+- Charts: Recharts
+- Deployment: Render (Backend), Render Static Site (Client)
+
+---
+
+## 🧩 Project Structure
+
+```
+
+smart-productivity-tracker/
+├── client/      # React Frontend
+│   └── src/
+├── backend/     # Express Backend
+│   └── models/, routes/, controllers/
+└── README.md
+
+````
+
+---
+
+## 📥 Setup Locally
 
 ```bash
-smart-productivity-tracker/
-├── client/              # React frontend
-│   ├── public/
-│   ├── src/
-│   │   ├── components/
-│   │   ├── pages/
-│   │   └── App.js
-│   └── package.json
-├── server/              # Express backend
-│   ├── models/
-│   ├── routes/
-│   ├── controllers/
-│   └── server.js
-├── .env
-├── README.md
-└── package.json
+git clone https://github.com/meghana5226/smart-productivity-tracker.git
+cd smart-productivity-tracker
+````
+
+### ➤ Setup Backend
+
+```bash
+cd backend
+npm install
+
+# .env file format:
+# MONGO_URI=your_mongo_connection_url
+# JWT_SECRET=your_secret_key
+
+npm start
+```
+
+### ➤ Setup Frontend
+
+```bash
+cd ../client
+npm install
+npm start
+```
+
+Frontend will run on `http://localhost:3000`
+Backend will run on `http://localhost:10000`
+
+---
+
+## 👩‍💻 Author
+
+*Bommishetti Meghana*
+🔗 GitHub: [@meghana5226](https://github.com/meghana5226)
+📧 Email: [bommishettimeghana5226@gmail.com](mailto:bommishettimeghana5226@gmail.com)
+
+
+
+
+
