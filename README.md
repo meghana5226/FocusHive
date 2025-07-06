@@ -11,6 +11,14 @@ A full-stack MERN-based Productivity Tracker to manage tasks, visualize progress
 - Backend (API): [https://smart-productivity-tracker.onrender.com](https://smart-productivity-tracker.onrender.com)
 
 ---
+## 📸 Screenshots
+
+### 🌞 Dashboard (Light Mode)
+![Dashboard Light](./assets/screens/dashboard-light.png)
+
+### ⏱️ Pomodoro Timer View
+![Pomodoro Timer](./assets/screens/dashboard-pomodoro.png)
+
 
 ##  Features
 
