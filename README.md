@@ -1,5 +1,6 @@
 
-#  Smart Productivity Tracker
+#  # FocusHive – Smart Productivity Tracker
+
 
 A full-stack MERN-based Productivity Tracker to manage tasks, visualize progress, and boost productivity with clean analytics.
 
