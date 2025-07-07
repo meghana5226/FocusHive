@@ -15,10 +15,10 @@ A full-stack MERN-based Productivity Tracker to manage tasks, visualize progress
 ## 📸 Screenshots
 
 ### 🌞 Dashboard (Light Mode)
-![Dashboard Light](./assets/screens/dashboard-light.png)
+![Dashboard Light](./assets/screenshots/dashboard-light.png)
 
 ### ⏱️ Pomodoro Timer View
-![Pomodoro Timer](./assets/screens/dashboard-pomodoro.png)
+![Pomodoro Timer](./assets/screenshots/dashboard-pomodoro.png)
 
 
 ##  Features
