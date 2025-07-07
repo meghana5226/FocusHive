@@ -1,6 +1,4 @@
-// File: src/pages/Dashboard.jsx
-
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -11,7 +9,15 @@ import Calendar from "react-calendar";
 import { BASE_URL } from "../config";
 
 import "react-calendar/dist/Calendar.css";
-import { LineChart, Line, CartesianGrid, XAxis, YAxis, Tooltip, ResponsiveContainer } from "recharts";
+import {
+  LineChart,
+  Line,
+  CartesianGrid,
+  XAxis,
+  YAxis,
+  Tooltip,
+  ResponsiveContainer,
+} from "recharts";
 
 const Dashboard = () => {
   const [tasks, setTasks] = useState([]);
@@ -19,7 +25,6 @@ const Dashboard = () => {
   const [user, setUser] = useState("");
   const [editId, setEditId] = useState(null);
   const [quotes, setQuotes] = useState([]);
-  //const [quote, setQuote] = useState("");
   const [favorites, setFavorites] = useState(() => {
     const saved = localStorage.getItem("favoriteQuotes");
     return saved ? JSON.parse(saved) : [];
@@ -27,47 +32,32 @@ const Dashboard = () => {
   const [darkMode, setDarkMode] = useState(false);
   const [value, onChange] = useState(new Date());
   const [focusTime, setFocusTime] = useState(25 * 60);
-  const [isRunning, setIsRunning] = useState(false);
 
   const token = localStorage.getItem("token");
 
-  const fetchTasks = async () => {
+  const fetchTasks = useCallback(async () => {
     try {
-      
-const res = await fetch(`${BASE_URL}/api/tasks`, {
-  headers: {
-    Authorization: `Bearer ${token}`,
-  },
-});
-
+      const res = await axios.get(`${BASE_URL}/api/tasks`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
       setTasks(res.data);
     } catch (err) {
       toast.error("❌ Failed to fetch tasks");
     }
-  };
-  const suggestions = [
-  "Plan tomorrow’s goals",
-  "Review my weekly progress",
-  "Drink water now",
-  "Write a journal entry",
-  "Read for 15 minutes"
-];
+  }, [token]);
 
-const handleSuggestionClick = (suggestion) => {
-  setText(suggestion);
-};
-
-
-  const fetchUser = async () => {
+  const fetchUser = useCallback(async () => {
     try {
-      const res = await axios.get("http://localhost:5000/api/auth/user", {
+      const res = await axios.get(`${BASE_URL}/api/auth/user`, {
         headers: { Authorization: token },
       });
       setUser(res.data.email);
     } catch (err) {
       toast.error("❌ Failed to fetch user");
     }
-  };
+  }, [token]);
 
   const fetchQuotes = async () => {
     try {
@@ -82,12 +72,24 @@ const handleSuggestionClick = (suggestion) => {
     }
   };
 
+  const suggestions = [
+    "Plan tomorrow’s goals",
+    "Review my weekly progress",
+    "Drink water now",
+    "Write a journal entry",
+    "Read for 15 minutes",
+  ];
+
+  const handleSuggestionClick = (suggestion) => {
+    setText(suggestion);
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       if (editId) {
         await axios.put(
-          `http://localhost:5000/api/tasks/${editId}`,
+          `${BASE_URL}/api/tasks/${editId}`,
           { text },
           { headers: { Authorization: token } }
         );
@@ -95,7 +97,7 @@ const handleSuggestionClick = (suggestion) => {
         setEditId(null);
       } else {
         await axios.post(
-          "http://localhost:5000/api/tasks",
+          `${BASE_URL}/api/tasks`,
           { text },
           { headers: { Authorization: token } }
         );
@@ -110,7 +112,7 @@ const handleSuggestionClick = (suggestion) => {
 
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`http://localhost:5000/api/tasks/${id}`, {
+      await axios.delete(`${BASE_URL}/api/tasks/${id}`, {
         headers: { Authorization: token },
       });
       fetchTasks();
@@ -140,16 +142,12 @@ const handleSuggestionClick = (suggestion) => {
 
   useEffect(() => {
     fetchTasks();
-  fetchUser();
-  fetchQuotes();
-
-  axios.get("https://zenquotes.io/api/today")
-    .then((res) => {
-      // setQuote(res.data[0].q + " — " + res.data[0].a); // optional
-    })
-    .catch(() => toast.error("😔 Couldn't fetch quote"));
-}, [fetchTasks, fetchUser]);
-    
+    fetchUser();
+    fetchQuotes();
+    axios
+      .get("https://zenquotes.io/api/today")
+      .catch(() => toast.error("😔 Couldn't fetch quote"));
+  }, [fetchTasks, fetchUser]);
 
   const getGreeting = () => {
     const hour = new Date().getHours();
@@ -158,7 +156,8 @@ const handleSuggestionClick = (suggestion) => {
     else return "Good Evening";
   };
 
-  const formatTime = (t) => `${Math.floor(t / 60)}:${(t % 60).toString().padStart(2, "0")}`;
+  const formatTime = (t) =>
+    `${Math.floor(t / 60)}:${(t % 60).toString().padStart(2, "0")}`;
 
   const settings = {
     dots: true,
@@ -181,22 +180,41 @@ const handleSuggestionClick = (suggestion) => {
   ];
 
   return (
-    <div className={`min-h-screen p-6 ${darkMode ? "bg-gray-900 text-white" : "bg-blue-50 text-black"}`}>
+    <div
+      className={`min-h-screen p-6 ${
+        darkMode ? "bg-gray-900 text-white" : "bg-blue-50 text-black"
+      }`}
+    >
       <ToastContainer position="top-center" autoClose={2000} />
       <div className="max-w-5xl mx-auto space-y-10">
         <div className="flex justify-between items-center">
           <div className="flex items-center gap-4">
-            <img src={`https://ui-avatars.com/api/?name=${user}&background=random`} className="w-12 h-12 rounded-full" alt="avatar" />
+            <img
+              src={`https://ui-avatars.com/api/?name=${user}&background=random`}
+              className="w-12 h-12 rounded-full"
+              alt="avatar"
+            />
             <div>
-              <h2 className="text-xl font-bold">👋 {getGreeting()}, <span className="text-indigo-500">{user}</span></h2>
-              <p className="text-sm text-gray-400">Stay consistent and crush your goals!</p>
+              <h2 className="text-xl font-bold">
+                👋 {getGreeting()},{" "}
+                <span className="text-indigo-500">{user}</span>
+              </h2>
+              <p className="text-sm text-gray-400">
+                Stay consistent and crush your goals!
+              </p>
             </div>
           </div>
           <div className="space-x-3">
-            <button onClick={toggleDarkMode} className="bg-gray-800 text-white px-3 py-1 rounded hover:bg-gray-700">
+            <button
+              onClick={toggleDarkMode}
+              className="bg-gray-800 text-white px-3 py-1 rounded hover:bg-gray-700"
+            >
               {darkMode ? "☀️ Light" : "🌙 Dark"}
             </button>
-            <button onClick={handleLogout} className="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600">
+            <button
+              onClick={handleLogout}
+              className="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600"
+            >
               🚪 Logout
             </button>
           </div>
@@ -204,29 +222,33 @@ const handleSuggestionClick = (suggestion) => {
 
         <Slider {...settings}>
           {quotes.map((q, i) => (
-            <div key={i} className="bg-yellow-100 dark:bg-yellow-200 rounded p-4 text-center">
+            <div
+              key={i}
+              className="bg-yellow-100 dark:bg-yellow-200 rounded p-4 text-center"
+            >
               <p className="italic">“{q.content}”</p>
               <p className="font-semibold mt-2">– {q.author}</p>
               <button
                 onClick={() => addToFavorites(q)}
                 className="text-sm text-indigo-600 hover:underline mt-1"
-              >💖 Save</button>
+              >
+                💖 Save
+              </button>
             </div>
           ))}
         </Slider>
-        {/* 🌟 Smart Suggestions */}
-            <div className="flex flex-wrap gap-2 mb-6">
-              {suggestions.map((sug, i) => (
-                <button
-                  key={i}
-                  className="bg-gray-200 dark:bg-gray-700 text-sm text-gray-800 dark:text-gray-100 px-3 py-1 rounded hover:bg-gray-300 dark:hover:bg-gray-600 transition"
-                  onClick={() => handleSuggestionClick(sug)}
-                >
-                  ✨ {sug}
-                </button>
-              ))}
-            </div>
 
+        <div className="flex flex-wrap gap-2 mb-6">
+          {suggestions.map((sug, i) => (
+            <button
+              key={i}
+              className="bg-gray-200 dark:bg-gray-700 text-sm text-gray-800 dark:text-gray-100 px-3 py-1 rounded hover:bg-gray-300 dark:hover:bg-gray-600 transition"
+              onClick={() => handleSuggestionClick(sug)}
+            >
+              ✨ {sug}
+            </button>
+          ))}
+        </div>
 
         <form onSubmit={handleSubmit} className="flex gap-4">
           <input
@@ -236,18 +258,34 @@ const handleSuggestionClick = (suggestion) => {
             placeholder="📋 Add a task..."
             className="flex-1 px-4 py-2 rounded border border-gray-300"
           />
-          <button type="submit" className="bg-indigo-600 text-white px-5 py-2 rounded">
+          <button
+            type="submit"
+            className="bg-indigo-600 text-white px-5 py-2 rounded"
+          >
             {editId ? "✏️ Update" : "➕ Add"}
           </button>
         </form>
 
         <ul className="space-y-3">
           {tasks.map((task) => (
-            <li key={task._id} className="flex justify-between bg-indigo-100 px-4 py-2 rounded">
+            <li
+              key={task._id}
+              className="flex justify-between bg-indigo-100 px-4 py-2 rounded"
+            >
               <span>{task.text}</span>
               <div className="space-x-3">
-                <button onClick={() => handleEdit(task)} className="text-blue-600 hover:underline">✏️ Edit</button>
-                <button onClick={() => handleDelete(task._id)} className="text-red-500 hover:underline">🗑️ Delete</button>
+                <button
+                  onClick={() => handleEdit(task)}
+                  className="text-blue-600 hover:underline"
+                >
+                  ✏️ Edit
+                </button>
+                <button
+                  onClick={() => handleDelete(task._id)}
+                  className="text-red-500 hover:underline"
+                >
+                  🗑️ Delete
+                </button>
               </div>
             </li>
           ))}
@@ -258,7 +296,9 @@ const handleSuggestionClick = (suggestion) => {
             <h3 className="text-lg font-semibold mb-2">📚 Favorite Quotes</h3>
             <ul className="list-disc ml-5 space-y-1">
               {favorites.map((q, i) => (
-                <li key={i}>“{q.content}” – <span className="italic">{q.author}</span></li>
+                <li key={i}>
+                  “{q.content}” – <span className="italic">{q.author}</span>
+                </li>
               ))}
             </ul>
           </div>
@@ -277,7 +317,12 @@ const handleSuggestionClick = (suggestion) => {
                 <XAxis dataKey="day" />
                 <YAxis allowDecimals={false} />
                 <Tooltip />
-                <Line type="monotone" dataKey="tasks" stroke="#6366f1" strokeWidth={3} />
+                <Line
+                  type="monotone"
+                  dataKey="tasks"
+                  stroke="#6366f1"
+                  strokeWidth={3}
+                />
               </LineChart>
             </ResponsiveContainer>
           </div>
@@ -287,9 +332,24 @@ const handleSuggestionClick = (suggestion) => {
           <h3 className="text-lg font-semibold mb-2">⏱️ Focus Timer (Pomodoro)</h3>
           <p className="text-3xl font-bold">{formatTime(focusTime)}</p>
           <div className="mt-4 space-x-4">
-            <button onClick={() => setIsRunning(true)} className="bg-green-500 text-white px-4 py-1 rounded">Start</button>
-            <button onClick={() => setIsRunning(false)} className="bg-yellow-500 text-white px-4 py-1 rounded">Pause</button>
-            <button onClick={() => setFocusTime(25 * 60)} className="bg-red-500 text-white px-4 py-1 rounded">Reset</button>
+            <button
+              onClick={() => setFocusTime((prev) => Math.max(0, prev - 60))}
+              className="bg-green-500 text-white px-4 py-1 rounded"
+            >
+              -1 min
+            </button>
+            <button
+              onClick={() => setFocusTime((prev) => prev + 60)}
+              className="bg-yellow-500 text-white px-4 py-1 rounded"
+            >
+              +1 min
+            </button>
+            <button
+              onClick={() => setFocusTime(25 * 60)}
+              className="bg-red-500 text-white px-4 py-1 rounded"
+            >
+              Reset
+            </button>
           </div>
         </div>
       </div>
