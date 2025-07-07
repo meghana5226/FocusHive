@@ -80,9 +80,8 @@ cd backend
 npm install
 
 # .env file format:
-# MONGO_URI=your_mongo_connection_url
-# JWT_SECRET=your_secret_key
-
+# MONGO_URI=mongodb+srv://Meghana:Meghana@cluster0.lofd5kp.mongodb.net/productivityDB?retryWrites=true&w=majority&appName=Cluster0
+# JWT_SECRET=meghanaSecretKey
 npm start
 ```
 
@@ -105,8 +104,3 @@ Backend will run on `http://localhost:10000`
 🔗 GitHub: [@meghana5226](https://github.com/meghana5226)
 📧 Email: [bommishettimeghana5226@gmail.com](mailto:bommishettimeghana5226@gmail.com)
 
-
-
-
-
->>>>>>> baf02aadfa6550c5272851edf47fcd7d45de1982
