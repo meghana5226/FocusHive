@@ -20,6 +20,13 @@ A full-stack MERN-based Productivity Tracker to manage tasks, visualize progress
 ### ⏱️ Pomodoro Timer View
 ![Pomodoro Timer](./assets/screenshots/dashboard-pomodoro.png)
 
+## 🔐 Authentication Screens
+
+### 🧾 Signup Page
+![Signup Page](./assets/screenshots/signup.png)
+
+### 🔑 Login Page
+![Login Page](./assets/screenshots/login.png)
 
 ##  Features
 
