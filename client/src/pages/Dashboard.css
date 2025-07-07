@@ -1,0 +1,81 @@
+/* Dashboard.css */
+
+.container {
+  max-width: 600px;
+  margin: 40px auto;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  background-color: #ffffff;
+  font-family: "Segoe UI", sans-serif;
+}
+
+h2 {
+  text-align: center;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+p {
+  text-align: center;
+  color: #555;
+}
+
+input[type="text"] {
+  width: 70%;
+  padding: 10px;
+  margin-top: 20px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 15px;
+}
+
+button {
+  padding: 10px 16px;
+  margin-left: 8px;
+  border: none;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+  background-color: #1976d2;
+  color: white;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #0d47a1;
+}
+
+ul {
+  padding: 0;
+  margin-top: 30px;
+}
+
+li {
+  list-style: none;
+  margin-bottom: 15px;
+  padding: 12px 15px;
+  background-color: #f2f2f2;
+  border-radius: 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+li input[type="text"] {
+  width: 60%;
+  padding: 8px;
+}
+
+li button {
+  margin-left: 6px;
+}
+
+.logout-btn {
+  background-color: #e53935;
+  margin-top: 10px;
+}
+
+.logout-btn:hover {
+  background-color: #b71c1c;
+}
