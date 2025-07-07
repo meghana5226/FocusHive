@@ -1,17 +1,17 @@
 
-#  # FocusHive – Smart Productivity Tracker
+# 🚀 FocusHive – Smart Productivity Tracker
 
+A full-stack MERN-based productivity tracker to manage tasks, visualize progress, and boost productivity with clean analytics and smart features.
 
-A full-stack MERN-based Productivity Tracker to manage tasks, visualize progress, and boost productivity with clean analytics.
+---
+
+## 🌐 Live Links
+
+- 🖥️ Frontend (Client): [https://smart-frontend.onrender.com](https://smart-frontend.onrender.com)
+- ⚙️ Backend (API): [https://smart-productivity-tracker.onrender.com](https://smart-productivity-tracker.onrender.com)
 
 ---
 
-##  Live Links
-
--  Frontend (Client): [https://smart-frontend.onrender.com](https://smart-frontend.onrender.com)
-- Backend (API): [https://smart-productivity-tracker.onrender.com](https://smart-productivity-tracker.onrender.com)
-
----
 ## 📸 Screenshots
 
 ### 🌞 Dashboard (Light Mode)
@@ -20,34 +20,34 @@ A full-stack MERN-based Productivity Tracker to manage tasks, visualize progress
 ### ⏱️ Pomodoro Timer View
 ![Pomodoro Timer](./assets/screenshots/dashboard-pomodoro.png)
 
-## 🔐 Authentication Screens
-
 ### 🧾 Signup Page
 ![Signup Page](./assets/screenshots/signup.png)
 
 ### 🔑 Login Page
 ![Login Page](./assets/screenshots/login.png)
 
-##  Features
+---
+
+## ✨ Features
 
 - 🔐 JWT-Based Authentication (Signup/Login)
-- 📅 Add, Edit, Delete Tasks with Deadline
-- 📈 Dashboard with Analytics (Recharts)
-- ⏱️ Pomodoro Timer Integration
-- 🗓️ Calendar View for Task Tracking
-- 📦 MongoDB for persistent storage
-- ✨ Clean UI using TailwindCSS
-- ☁️ Fully deployed on Render (backend) & Render Static Site (client)
+- 📅 Add, Edit, Delete Tasks with Deadlines
+- 📈 Dashboard with Weekly Analytics (Recharts)
+- ⏱️ Pomodoro Timer Integration for Focus
+- 🗓️ Calendar View for Task Planning
+- 💾 MongoDB for persistent storage
+- 🎨 Responsive UI using TailwindCSS
+- ☁️ Deployed on Render (Backend) & Render Static Site (Client)
 
 ---
 
-## ⚙ Tech Stack
+## ⚙️ Tech Stack
 
-- Frontend: React.js, TailwindCSS, Axios
-- Backend: Node.js, Express.js, MongoDB, Mongoose
-- Auth: JWT, bcryptjs
-- Charts: Recharts
-- Deployment: Render (Backend), Render Static Site (Client)
+- **Frontend:** React.js, TailwindCSS, Axios
+- **Backend:** Node.js, Express.js, MongoDB, Mongoose
+- **Auth:** JWT, bcryptjs
+- **Charts:** Recharts
+- **Deployment:** Render (Backend), Render Static Site (Client)
 
 ---
 
@@ -55,37 +55,59 @@ A full-stack MERN-based Productivity Tracker to manage tasks, visualize progress
 
 ```
 
-smart-productivity-tracker/
-├── client/      # React Frontend
+FocusHive/
+├── client/          # React Frontend
 │   └── src/
-├── backend/     # Express Backend
-│   └── models/, routes/, controllers/
+│       └── pages/
+│       └── components/
+├── backend/         # Express Backend
+│   ├── routes/
+│   ├── controllers/
+│   ├── models/
+│   └── index.js
+├── assets/          # Screenshots, Images
+├── .env.example     # Environment variable template
 └── README.md
 
 ````
 
 ---
 
-## 📥 Setup Locally
+## 💻 Setup Locally
 
 ```bash
-git clone https://github.com/meghana5226/smart-productivity-tracker.git
-cd smart-productivity-tracker
+git clone https://github.com/meghana5226/FocusHive.git
+cd FocusHive
 ````
 
-### ➤ Setup Backend
+---
+
+### 🛠️ Setup Backend
 
 ```bash
 cd backend
 npm install
-
-# .env file format:
-# PORT=5000
-# MONGO_URI=your_mongo_connection_string
-# JWT_SECRET=your_jwt_secret_key
 ```
 
-### ➤ Setup Frontend
+Create a `.env` file in `/backend`:
+
+```env
+PORT=5000
+MONGO_URI=your_mongodb_connection_string
+JWT_SECRET=your_jwt_secret_key
+```
+
+Run the server:
+
+```bash
+node index.js
+```
+
+Server runs at: `http://localhost:5000`
+
+---
+
+### 🎨 Setup Frontend
 
 ```bash
 cd ../client
@@ -93,14 +115,30 @@ npm install
 npm start
 ```
 
-Frontend will run on `http://localhost:3000`
-Backend will run on `http://localhost:10000`
+Client runs at: `http://localhost:3000`
+
+---
+
+## 🔐 Environment Variables
+
+Create a `.env` file in the `backend` folder using this template:
+
+```
+# .env
+
+PORT=5000
+MONGO_URI=your_mongo_connection_string
+JWT_SECRET=your_jwt_secret_key
+```
 
 ---
 
 ## 👩‍💻 Author
 
-*Bommishetti Meghana*
+**Bommishetti Meghana**
 🔗 GitHub: [@meghana5226](https://github.com/meghana5226)
 📧 Email: [bommishettimeghana5226@gmail.com](mailto:bommishettimeghana5226@gmail.com)
+
+
+
 
