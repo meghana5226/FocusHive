@@ -80,9 +80,9 @@ cd backend
 npm install
 
 # .env file format:
-# MONGO_URI=mongodb+srv://Meghana:Meghana@cluster0.lofd5kp.mongodb.net/productivityDB?retryWrites=true&w=majority&appName=Cluster0
-# JWT_SECRET=meghanaSecretKey
-npm start
+# PORT=5000
+# MONGO_URI=your_mongo_connection_string
+# JWT_SECRET=your_jwt_secret_key
 ```
 
 ### ➤ Setup Frontend
